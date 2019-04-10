@@ -12,16 +12,19 @@ Start fresh, use Wes Bos but make it my own and understand it fully
 
 5. Tello uses UDP. Which uses dgram (cbecause it can't do it with the browser)
 
-6. 
+6. > npm install dgram
+> npm install waait
+connect wifi to Tello then
+> node fly.js to run the tello
 
 
 // Old Notes
 Backend skeleton:
 
 > npm install dgram
-    > npm install waait
+> npm install waait
 connect wifi to Tello then
-    > node fly.js to run the tello
+> node fly.js to run the tello
 
 
 Used Next.js to create front end framework.

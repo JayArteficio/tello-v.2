@@ -22,7 +22,9 @@ connect wifi to Tello then
    -make the commadDelays.js and require it in fly.js
 
 8. wes bos made an array of commands that the drone will run with the appropriate wait times in between
-    
+    then he made a function that will 'loop' thru it.
+
+9. Connect to State
 
 
 // Old Notes

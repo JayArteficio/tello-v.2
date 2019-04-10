@@ -5,11 +5,19 @@ const commandDelays = require('./commandDelays');
 
 const PORT = 8889;
 const HOST = '192.168.10.1';
+const STATEPORT = 8890;
 
 const drone = dgram.createSocket('udp4');
 drone.bind(PORT);
 
+const droneState = dgram.createSocket('udp4');
+droneState.bind(STATEPORT);
+
 drone.on('message', message => {
+    console.log(`🚁 : ${message}`); 
+});
+
+droneState.on('message', message => {
     console.log(`🚁 : ${message}`); 
 });
 
@@ -25,7 +33,8 @@ function handleError(err) {
 // // battery/ msg, 0/offset, 8/lenght of msg, port, address, callback in case of error
 // drone.send('battery?', 0, 8, PORT, HOST, handleError);
 
-const flightCommands = ['command', 'battery?', 'takeoff', 'land'];
+// const flightCommands = ['command', 'battery?', 'takeoff', 'land'];
+const flightCommands = ['command', 'battery?'];
 
 let i = 0;
 
@@ -40,6 +49,6 @@ async function run() {
         return run();
     }
     console.log('All Flight Commands done, mission complete!');
-}   
+};
 
 run();

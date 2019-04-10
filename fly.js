@@ -21,7 +21,7 @@ function parseState(state) {
   return state.split(";").map(x => x.split(':'));
 }
 droneState.on('message', state => {
-  console.log(state.toString());
+//   console.log(state.toString());
   const formattedState = parseState(state.toString());
   // NOTE: important to stringify it, otherwise it can't parse it
   console.log(formattedState);

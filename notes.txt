@@ -33,6 +33,45 @@ connect wifi to Tello then
 
     REMEMBER to to.striong the state, he didn't really say this and kinda forgot it
 
+11. Use next.js to creat a react app
+        a) Make FRONTEND folder with:
+            FRONTEND
+            - pages
+                index.js
+            - components
+                DroneState.js
+                Commands.js
+        b)  In Frontened folder in terminal
+            > npm init -y ( -y means yes to all defaults)
+            > npm install next react react-dom --save 
+        c) add scripts in package json (get rid of the test script)
+                    "scripts": {
+                        "dev": "next",
+                        "build": "next build",
+                        "start": "next start"
+                    }
+        d) In index.js:
+                export default () => (<div>Hello Next.js</div>);
+
+        e) run server  with command 
+                >npm run dev
+                go to localhost 3000
+
+
+Use websockets to make a pipeline for the browser. (kinda like what we were doing with udp4)
+16min. 
+
+mkdir frontend
+        mkdir pages 
+            touch pages/index.js
+            mkdir components
+            npm i
+            npm run dev
+
+12. Use next.js to make a qucik react app
+
+12. use Socket.io to connect backend to frontend
+
 
 // Old Notes
 Backend skeleton:

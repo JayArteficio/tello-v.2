@@ -57,21 +57,8 @@ connect wifi to Tello then
                 >npm run dev
                 go to localhost 3000
 
-
-Use websockets to make a pipeline for the browser. (kinda like what we were doing with udp4)
-16min. 
-
-mkdir frontend
-        mkdir pages 
-            touch pages/index.js
-            mkdir components
-            npm i
-            npm run dev
-
-12. Use next.js to make a qucik react app
-
 12. use Socket.io to connect backend to frontend
-
+16:47min
 
 // Old Notes
 Backend skeleton:

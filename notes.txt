@@ -24,7 +24,14 @@ connect wifi to Tello then
 8. wes bos made an array of commands that the drone will run with the appropriate wait times in between
     then he made a function that will 'loop' thru it.
 
-9. Connect to State
+9. Connect to State using different port
+
+10. Parse the state using function parseState(state) {
+    return state.split(';'.localeCompare(x => x.split(':'));
+    };
+    and retrun the formatted state.  note need to make the state a string beofre anything else
+
+    REMEMBER to to.striong the state, he didn't really say this and kinda forgot it
 
 
 // Old Notes

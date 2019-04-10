@@ -14,17 +14,23 @@ const droneState = dgram.createSocket('udp4');
 droneState.bind(STATEPORT);
 
 drone.on('message', message => {
-    console.log(`🚁 : ${message}`); 
+  console.log(`🚁 : ${message}`);
 });
 
-droneState.on('message', message => {
-    console.log(`🚁 : ${message}`); 
+function parseState(state) {
+  return state.split(";").map(x => x.split(':'));
+}
+droneState.on('message', state => {
+  console.log(state.toString());
+  const formattedState = parseState(state.toString());
+  // NOTE: important to stringify it, otherwise it can't parse it
+  console.log(formattedState);
 });
 
 function handleError(err) {
-    if (err) {
-        console.log(`Error: ${err}`);
-    }
+  if (err) {
+    console.log(`Error: ${err}`);
+  }
 }
 
 // // this enters onto SDK mode
@@ -39,16 +45,16 @@ const flightCommands = ['command', 'battery?'];
 let i = 0;
 
 async function run() {
-    const command = flightCommands[i];
-    const delay = commandDelays[command];
-    console.log(`running command: ${command}`);
-    drone.send(command, 0, command.length, PORT, HOST, handleError);
-    await wait(delay);
-    i += 1;
-    if (i < flightCommands.length) {
-        return run();
-    }
-    console.log('All Flight Commands done, mission complete!');
-};
+  const command = flightCommands[i];
+  const delay = commandDelays[command];
+  console.log(`running command: ${command}`);
+  drone.send(command, 0, command.length, PORT, HOST, handleError);
+  await wait(delay);
+  i += 1;
+  if (i < flightCommands.length) {
+    return run();
+  }
+  console.log('All Flight Commands done, mission complete!');
+}
 
 run();

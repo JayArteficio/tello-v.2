@@ -17,6 +17,13 @@ Start fresh, use Wes Bos but make it my own and understand it fully
 connect wifi to Tello then
 > node fly.js to run the tello
 
+7. import commadDelays.js from github since it takes time for the drone to complete each command
+   and UDP will not give any error feedback
+   -make the commadDelays.js and require it in fly.js
+
+8. wes bos made an array of commands that the drone will run with the appropriate wait times in between
+    
+
 
 // Old Notes
 Backend skeleton:

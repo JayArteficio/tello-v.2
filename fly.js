@@ -1,6 +1,10 @@
 // remember to > npm install dgram and > npm install waait in terminal
 const dgram = require('dgram');
 const wait = require('waait');
+const app = require('express')();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+
 const commandDelays = require('./commandDelays');
 
 const PORT = 8889;
@@ -42,19 +46,30 @@ function handleError(err) {
 // const flightCommands = ['command', 'battery?', 'takeoff', 'land'];
 const flightCommands = ['command', 'battery?'];
 
-let i = 0;
+// let i = 0;
 
-async function run() {
-  const command = flightCommands[i];
-  const delay = commandDelays[command];
-  console.log(`running command: ${command}`);
-  drone.send(command, 0, command.length, PORT, HOST, handleError);
-  await wait(delay);
-  i += 1;
-  if (i < flightCommands.length) {
-    return run();
-  }
-  console.log('All Flight Commands done, mission complete!');
-}
+// async function run() {
+//   const command = flightCommands[i];
+//   const delay = commandDelays[command];
+//   console.log(`running command: ${command}`);
+//   drone.send(command, 0, command.length, PORT, HOST, handleError);
+//   await wait(delay);
+//   i += 1;
+//   if (i < flightCommands.length) {
+//     return run();
+//   }
+//   console.log('All Flight Commands done, mission complete!');
+// }
 
-run();
+// run();
+
+io.on('connection', socket => {
+    socket.on('command', command => {
+        console.log('Command sent from browser');
+    });
+    socket.emit('status', "CONNECTED");
+});
+
+http.listen(6767, () => {
+    console.log('Socket io server is up and runnig');
+});

@@ -58,6 +58,8 @@ connect wifi to Tello then
                 go to localhost 3000
 
 12. use Socket.io to connect backend to frontend
+    in backend folder > npm i socket.io express
+
 16:47min
 
 // Old Notes

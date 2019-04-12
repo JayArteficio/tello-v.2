@@ -42,6 +42,7 @@ connect wifi to Tello then
                 DroneState.js
                 Commands.js
         b)  In Frontened folder in terminal
+            > npm i ( yes, forgot to do this)
             > npm init -y ( -y means yes to all defaults)
             > npm install next react react-dom --save 
         c) add scripts in package json (get rid of the test script)
@@ -57,10 +58,38 @@ connect wifi to Tello then
                 >npm run dev
                 go to localhost 3000
 
+---Got stuck in this part.  perhaps I should review socket first...---
 12. use Socket.io to connect backend to frontend
     in backend folder > npm i socket.io express
+        const app = require("express")();
+        // webserver
+        // remember to > npm i socket.io express
+        const http = require("http").Server(app);
+        // import http library and passed in is the express instance
+        const io = require("socket.io")(http);
+        // new socket io instance in existing server
 
-16:47min
+13. Create socket connecting frontend and backend
+        - touch socket.js
+        - change DroneState.js to accept the Socket
+        > npm run dev in FRONT END to run the website
+        > node fly.js in backend to run the serve
+        - this should work
+
+21:10min
+14. Next, send the dronestate that is going to the backend to the frontend
+    - Wrap the socket.emit in a lo-dash throttle to run every one second since it was spitting out oo much data
+    - make react hooks...?
+    - backend> npm i nodemon --save-devn  (skipped this step)
+        backend/package.json:
+            "main": "fly.js",
+            "scripts": {
+                    "start": "nodemon fly.js"
+            },
+        > npm start  (to make restart automatically)
+    - instal lodash for the throttle method
+
+
 
 // Old Notes
 Backend skeleton:
@@ -88,7 +117,7 @@ const app = require("express")();
 // webserver
 // remember to > npm i socket.io express
 const http = require("http").Server(app);
-// import http library and passed are express instance
+// import http library and passed in is the express instance
 const io = require("socket.io")(http);
 // new socket io instance in existing server
 
